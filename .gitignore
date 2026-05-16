@@ -1,3 +1,33 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Training and evaluation artifacts
+logs/*
+!logs/.gitkeep
+wandb/
+runs/
+outputs/
+eval_results/
+checkpoints/
+checkpoint-*/
+**/checkpoint-*/
+
+# Local model/data/cache directories
+models/
+data/
+datasets/
+.cache/
+.huggingface/
+
+# Runtime byproducts
+*.log
+*.out
+*.err
+*.tmp
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
