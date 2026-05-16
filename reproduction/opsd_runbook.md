@@ -108,6 +108,12 @@ Eval-set-only smoke check:
 python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
 ```
 
+Dataset schema validation:
+
+```bash
+python scripts/validate_datasets.py --cache-dir .cache/hf_datasets
+```
+
 For full details, including Windows PowerShell environment variables, offline reuse, and expected columns, see `reproduction/dataset_download.md`.
 
 ## Hardware Analysis

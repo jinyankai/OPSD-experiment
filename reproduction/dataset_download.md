@@ -63,6 +63,23 @@ python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
 
 The script prints the dataset length and column names. Treat that output as a setup check, not as an experiment result.
 
+## Preprocessing Decision
+
+No offline preprocessing is required for the default reproduction. The official code formats rows at runtime:
+
+- OPSD constructs student/teacher prompts in `data_collator.py`.
+- SFT formats rows inside `sft_train.py`.
+- GRPO formats rows inside `grpo_train.py`.
+- Evaluation maps benchmark fields inside `eval/evaluate_math.py`.
+
+Run validation, not preprocessing:
+
+```bash
+python scripts/validate_datasets.py --cache-dir .cache/hf_datasets
+```
+
+See `reproduction/dataset_preprocessing.md` for the decision record.
+
 ## Option C: Environment Variables
 
 Linux/macOS:

@@ -7,7 +7,7 @@ Run these before claiming a harness or documentation change is complete:
 ```powershell
 python evals/smoke_eval.py
 python -m unittest discover -s tests -p "test_*.py"
-python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
+python -m py_compile scripts/prefetch_datasets.py scripts/validate_datasets.py scripts/analyze_hardware.py
 ```
 
 If `bash` exists on the machine, also run:
@@ -29,6 +29,7 @@ Dataset access is a setup check, not a reproduced model result:
 ```powershell
 python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets
 python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
+python scripts/validate_datasets.py --cache-dir .cache/hf_datasets
 ```
 
 Record failures exactly. Hugging Face network, authentication, or policy failures are blockers, not reasons to invent local data.

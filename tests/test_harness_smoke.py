@@ -19,6 +19,8 @@ class HarnessSmokeTest(unittest.TestCase):
             "agents/skills/survey-reproduction/SKILL.md",
             "reproduction/opsd_runbook.md",
             "reproduction/dataset_download.md",
+            "reproduction/dataset_preprocessing.md",
+            "scripts/validate_datasets.py",
             "reproduction/hardware_analysis.md",
             "scripts/analyze_hardware.py",
             "notes/source_ledger.md",

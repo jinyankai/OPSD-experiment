@@ -25,7 +25,7 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
 4. Keep upstream OPSD code changes narrow and justified by reproduction needs.
 5. Update docs when workflows change:
    - paper/source changes: `papers/manifest.md`, `notes/source_ledger.md`;
-   - data changes: `reproduction/dataset_download.md`, `scripts/prefetch_datasets.py`;
+   - data changes: `reproduction/dataset_download.md`, `reproduction/dataset_preprocessing.md`, `scripts/prefetch_datasets.py`, `scripts/validate_datasets.py`;
    - hardware changes: `reproduction/hardware_analysis.md`, `scripts/analyze_hardware.py`;
    - run changes: `reproduction/opsd_runbook.md`;
    - experiment facts: `experiments/`.
@@ -44,20 +44,22 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
    `git -c safe.directory=E:/AlphaLab/OPSD-experiment status --short --branch`
 2. Verify dataset availability:
    `python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets`
-3. For Hugging Face access, keep the default mirror or override it explicitly:
+3. Verify dataset schema:
+   `python scripts/validate_datasets.py --cache-dir .cache/hf_datasets`
+4. For Hugging Face access, keep the default mirror or override it explicitly:
    `source scripts/hf_mirror_env.sh`
-4. On a new server, analyze hardware:
+5. On a new server, analyze hardware:
    `python scripts/analyze_hardware.py --output-dir reproduction/hardware_reports`
-5. Verify imports/environment before training.
-6. Start with smoke tests before full training or evaluation.
-7. Record every run using `experiments/experiment_log_template.md`.
+6. Verify imports/environment before training.
+7. Start with smoke tests before full training or evaluation.
+8. Record every run using `experiments/experiment_log_template.md`.
 
 ## Fast Checks
 
 ```powershell
 python evals/smoke_eval.py
 python -m unittest discover -s tests -p "test_*.py"
-python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
+python -m py_compile scripts/prefetch_datasets.py scripts/validate_datasets.py scripts/analyze_hardware.py
 ```
 
 If `bash` is installed:

@@ -26,7 +26,7 @@ This fork is a research workspace for a self-distillation / on-policy distillati
 
 - Harness sanity: `python evals/smoke_eval.py`.
 - Baseline tests: `python -m unittest discover -s tests -p "test_*.py"`.
-- Script syntax: `python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py`; run `bash -n` on experiment shell scripts when bash is available.
+- Script syntax: `python -m py_compile scripts/prefetch_datasets.py scripts/validate_datasets.py scripts/analyze_hardware.py`; run `bash -n` on experiment shell scripts when bash is available.
 - Heavy training/evaluation is not a default check; run it only when requested and record commands, hardware, logs, and outputs.
 
 ## Review Policy

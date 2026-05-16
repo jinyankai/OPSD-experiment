@@ -7,6 +7,8 @@ logs/*
 !logs/.gitkeep
 reproduction/hardware_reports/*
 !reproduction/hardware_reports/.gitkeep
+reproduction/dataset_reports/*
+!reproduction/dataset_reports/.gitkeep
 wandb/
 runs/
 outputs/

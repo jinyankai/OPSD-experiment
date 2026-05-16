@@ -16,6 +16,7 @@ This directory is the system of record for how agents should work in this OPSD s
 - Paper inventory: `papers/manifest.md`.
 - OPSD runbook: `reproduction/opsd_runbook.md`.
 - Dataset acquisition: `reproduction/dataset_download.md`.
+- Dataset preprocessing decision: `reproduction/dataset_preprocessing.md`.
 - Hardware analysis: `reproduction/hardware_analysis.md`.
 - Experiment template: `experiments/experiment_log_template.md`.
 - Survey deck outline: `slides/survey_outline.md`.

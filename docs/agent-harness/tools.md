@@ -27,6 +27,7 @@ Use sources in this order:
 - Experiment scripts source `scripts/hf_mirror_env.sh`, which defaults to `HF_ENDPOINT=https://hf-mirror.com`.
 - Use `USE_HF_MIRROR=0` to disable the mirror, or set `HF_ENDPOINT=...` before running a script to choose another endpoint.
 - Use `scripts/prefetch_datasets.py` for dataset preflight checks.
+- Use `scripts/validate_datasets.py` for schema/non-empty-field validation; do not add offline preprocessing unless `reproduction/dataset_preprocessing.md` says the decision changed.
 - Use `scripts/analyze_hardware.py` before selecting model size, GPU count, batch size, or vLLM tensor parallelism on a new server.
 - Do not commit model weights, checkpoints, cache directories, or raw logs.
 - If authentication is required, ask the user to provide login through the appropriate CLI or environment; do not request secrets in chat.
