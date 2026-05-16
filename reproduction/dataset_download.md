@@ -4,6 +4,14 @@ Status: documented, not yet executed in this fork.
 
 This repo uses Hugging Face `datasets`. The official scripts download data lazily at first use, but for reproducibility it is better to prefetch all datasets into a known cache directory before training or evaluation.
 
+By default, project scripts use the Hugging Face mirror:
+
+```bash
+export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
+```
+
+Disable this default with `USE_HF_MIRROR=0` if the server can access `https://huggingface.co` directly.
+
 ## Dataset Inventory
 
 | Use | Code path | HF dataset ID | Split | Trust remote code? | Expected fields |
@@ -35,6 +43,12 @@ Recommended for experiments:
 python scripts/prefetch_datasets.py --cache-dir .cache/hf_datasets
 ```
 
+Use a different mirror/endpoint:
+
+```bash
+python scripts/prefetch_datasets.py --cache-dir .cache/hf_datasets --hf-endpoint https://hf-mirror.com
+```
+
 Prefetch only the training set:
 
 ```bash
@@ -56,6 +70,7 @@ Linux/macOS:
 ```bash
 export HF_HOME="$PWD/.cache/huggingface"
 export HF_DATASETS_CACHE="$PWD/.cache/hf_datasets"
+export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
 python scripts/prefetch_datasets.py --cache-dir "$HF_DATASETS_CACHE"
 ```
 
@@ -64,6 +79,7 @@ Windows PowerShell:
 ```powershell
 $env:HF_HOME = "$PWD\.cache\huggingface"
 $env:HF_DATASETS_CACHE = "$PWD\.cache\hf_datasets"
+$env:HF_ENDPOINT = "https://hf-mirror.com"
 python scripts/prefetch_datasets.py --cache-dir $env:HF_DATASETS_CACHE
 ```
 
@@ -97,4 +113,4 @@ Offline mode should only be used after the prefetch script has successfully prin
 
 ## Model Weights Are Separate
 
-Dataset prefetching does not download Qwen3 model weights. The official scripts use local model paths such as `/data0/shared/Qwen3-1.7B`. On a new machine, download or mount the model separately and pass its path through `--model_name_or_path` / `--base_model`.
+Dataset prefetching does not download Qwen3 model weights. The official scripts use local model paths such as `/data0/shared/Qwen3-1.7B`. On a new machine, download or mount the model separately and pass its path through `--model_name_or_path` / `--base_model`. If a script uses a Hugging Face model ID instead of a local path, `scripts/hf_mirror_env.sh` makes transformers/vLLM resolve it through `https://hf-mirror.com` by default.

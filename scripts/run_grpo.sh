@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/hf_mirror_env.sh"
+
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch \
     --config_file accelerate.yaml \
     --num_processes 8 \

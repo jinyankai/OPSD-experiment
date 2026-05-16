@@ -305,6 +305,7 @@ def recommendations(report: dict[str, Any]) -> dict[str, Any]:
     commands: list[str] = []
     profile = "cpu_or_unknown"
 
+    commands.append("source scripts/hf_mirror_env.sh")
     commands.append("python scripts/prefetch_datasets.py --cache-dir .cache/hf_datasets")
 
     if gpu_count == 0:

@@ -9,8 +9,16 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+import os
 
-from datasets import load_dataset
+DEFAULT_HF_ENDPOINT = "https://hf-mirror.com"
+
+
+def configure_hf_endpoint(endpoint: str | None) -> None:
+    if os.environ.get("USE_HF_MIRROR", "1") == "0":
+        return
+    os.environ.setdefault("HF_ENDPOINT", endpoint or DEFAULT_HF_ENDPOINT)
+    os.environ.setdefault("HUGGINGFACE_CO_RESOLVE_ENDPOINT", os.environ["HF_ENDPOINT"])
 
 
 @dataclass(frozen=True)
@@ -49,6 +57,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional Hugging Face datasets cache directory.",
     )
+    parser.add_argument(
+        "--hf-endpoint",
+        default=None,
+        help="Optional Hugging Face endpoint. Defaults to https://hf-mirror.com unless USE_HF_MIRROR=0.",
+    )
     return parser.parse_args()
 
 
@@ -62,6 +75,10 @@ def selected_specs(group: str) -> list[DatasetSpec]:
 
 def main() -> None:
     args = parse_args()
+    configure_hf_endpoint(args.hf_endpoint)
+    from datasets import load_dataset
+
+    print(f"HF_ENDPOINT={os.environ.get('HF_ENDPOINT', '<unset>')}")
     for spec in selected_specs(args.only):
         print(f"\nLoading {spec.purpose}: {spec.name} split={spec.split}")
         dataset = load_dataset(

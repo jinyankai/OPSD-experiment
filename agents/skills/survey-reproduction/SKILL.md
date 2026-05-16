@@ -44,11 +44,13 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
    `git -c safe.directory=E:/AlphaLab/OPSD-experiment status --short --branch`
 2. Verify dataset availability:
    `python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets`
-3. On a new server, analyze hardware:
+3. For Hugging Face access, keep the default mirror or override it explicitly:
+   `source scripts/hf_mirror_env.sh`
+4. On a new server, analyze hardware:
    `python scripts/analyze_hardware.py --output-dir reproduction/hardware_reports`
-4. Verify imports/environment before training.
-5. Start with smoke tests before full training or evaluation.
-6. Record every run using `experiments/experiment_log_template.md`.
+5. Verify imports/environment before training.
+6. Start with smoke tests before full training or evaluation.
+7. Record every run using `experiments/experiment_log_template.md`.
 
 ## Fast Checks
 
@@ -56,6 +58,12 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
 python evals/smoke_eval.py
 python -m unittest discover -s tests -p "test_*.py"
 python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
+```
+
+If `bash` is installed:
+
+```powershell
+bash -n scripts/hf_mirror_env.sh scripts/run_opsd_1b.sh scripts/run_opsd_4b.sh scripts/run_opsd_4b_nonthink.sh scripts/run_opsd_8b.sh scripts/run_opsd_8b_nonthink.sh scripts/run_sft.sh scripts/run_grpo.sh eval/run_eval.sh eval/run_eval_nonthink.sh
 ```
 
 For training/eval code changes:

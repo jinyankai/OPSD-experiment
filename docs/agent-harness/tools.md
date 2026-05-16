@@ -24,6 +24,8 @@ Use sources in this order:
 
 ## Hugging Face and Model Artifacts
 
+- Experiment scripts source `scripts/hf_mirror_env.sh`, which defaults to `HF_ENDPOINT=https://hf-mirror.com`.
+- Use `USE_HF_MIRROR=0` to disable the mirror, or set `HF_ENDPOINT=...` before running a script to choose another endpoint.
 - Use `scripts/prefetch_datasets.py` for dataset preflight checks.
 - Use `scripts/analyze_hardware.py` before selecting model size, GPU count, batch size, or vLLM tensor parallelism on a new server.
 - Do not commit model weights, checkpoints, cache directories, or raw logs.

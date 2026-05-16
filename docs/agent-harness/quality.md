@@ -10,6 +10,12 @@ python -m unittest discover -s tests -p "test_*.py"
 python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
 ```
 
+If `bash` exists on the machine, also run:
+
+```powershell
+bash -n scripts/hf_mirror_env.sh scripts/run_opsd_1b.sh scripts/run_opsd_4b.sh scripts/run_opsd_4b_nonthink.sh scripts/run_opsd_8b.sh scripts/run_opsd_8b_nonthink.sh scripts/run_sft.sh scripts/run_grpo.sh eval/run_eval.sh eval/run_eval_nonthink.sh
+```
+
 For code changes touching upstream training/evaluation entry points, also run syntax checks:
 
 ```powershell

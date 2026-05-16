@@ -74,6 +74,8 @@ Compatibility risks:
 
 The official scripts use Hugging Face `datasets` and download lazily at first use. For reproducibility, prefetch them before training/evaluation and keep the cache path fixed.
 
+Project experiment scripts default to `HF_ENDPOINT=https://hf-mirror.com` via `scripts/hf_mirror_env.sh`, because direct Hugging Face access may fail on the target server. Set `USE_HF_MIRROR=0` to disable the mirror or set `HF_ENDPOINT=...` to use another endpoint.
+
 Primary training dataset:
 
 - `siyanzhao/Openthoughts_math_30k_opsd`, split `train`, loaded in `opsd_train.py`.

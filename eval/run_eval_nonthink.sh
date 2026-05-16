@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../scripts/hf_mirror_env.sh"
 
 BASE_MODEL="/data0/shared/Qwen3-4B"
 
