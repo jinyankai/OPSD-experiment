@@ -24,6 +24,7 @@ For survey or paper-note changes:
 For code or experiment changes:
 
 - Record commit, command, environment, dataset cache, model path, and hardware.
+- If running on a new server, reference the latest hardware report or summarize its GPU/RAM/disk facts.
 - Put durable setup changes in `reproduction/`.
 - Put per-run facts in `experiments/`.
 - Store raw logs in ignored paths and reference them from experiment records.

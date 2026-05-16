@@ -7,7 +7,7 @@ Run these before claiming a harness or documentation change is complete:
 ```powershell
 python evals/smoke_eval.py
 python -m unittest discover -s tests -p "test_*.py"
-python -m py_compile scripts/prefetch_datasets.py
+python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
 ```
 
 For code changes touching upstream training/evaluation entry points, also run syntax checks:
@@ -26,6 +26,16 @@ python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
 ```
 
 Record failures exactly. Hugging Face network, authentication, or policy failures are blockers, not reasons to invent local data.
+
+## Hardware Checks
+
+Run this on the target server before changing training defaults:
+
+```powershell
+python scripts/analyze_hardware.py --output-dir reproduction/hardware_reports
+```
+
+Generated hardware reports are ignored by Git by default. Summarize the relevant facts in experiment logs or runbook updates instead of committing private server details.
 
 ## Heavy Experiment Checks
 

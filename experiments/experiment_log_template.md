@@ -9,6 +9,7 @@
 - Branch:
 - Upstream commit:
 - Machine / GPU:
+- Hardware report:
 - CUDA / driver:
 - Conda env:
 

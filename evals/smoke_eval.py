@@ -14,6 +14,8 @@ REQUIRED = [
     "agents/skills/survey-reproduction/SKILL.md",
     "reproduction/opsd_runbook.md",
     "reproduction/dataset_download.md",
+    "reproduction/hardware_analysis.md",
+    "scripts/analyze_hardware.py",
     "notes/source_ledger.md",
     "papers/manifest.md",
 ]

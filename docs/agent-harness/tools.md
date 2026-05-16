@@ -25,6 +25,7 @@ Use sources in this order:
 ## Hugging Face and Model Artifacts
 
 - Use `scripts/prefetch_datasets.py` for dataset preflight checks.
+- Use `scripts/analyze_hardware.py` before selecting model size, GPU count, batch size, or vLLM tensor parallelism on a new server.
 - Do not commit model weights, checkpoints, cache directories, or raw logs.
 - If authentication is required, ask the user to provide login through the appropriate CLI or environment; do not request secrets in chat.
 

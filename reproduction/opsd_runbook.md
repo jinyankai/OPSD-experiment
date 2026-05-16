@@ -108,6 +108,23 @@ python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
 
 For full details, including Windows PowerShell environment variables, offline reuse, and expected columns, see `reproduction/dataset_download.md`.
 
+## Hardware Analysis
+
+Before selecting model size, GPU count, batch size, completion length, or vLLM tensor parallelism on a new server, run:
+
+```bash
+python scripts/analyze_hardware.py --output-dir reproduction/hardware_reports
+```
+
+The generated report recommends one of these profiles:
+
+- `official_1p7b_or_larger`: start with official Qwen3-1.7B commands; larger models may be feasible after smoke tests.
+- `reduced_1p7b`: reduce batch size, completion length, and evaluation parallelism.
+- `single_gpu_smoke`: use only for environment validation and tiny debug runs.
+- `insufficient_for_training` or `cpu_or_unknown`: do not run OPSD training; use docs/static checks/dataset preflight.
+
+Use the report to update concrete experiment logs and any server-specific command variants. Hardware reports are setup evidence, not model-quality results.
+
 ## Minimal Reproduction
 
 Recommended first target: Qwen3-1.7B, LoRA, fixed teacher, 4 GPUs if available.

@@ -17,6 +17,7 @@
   - `experiments/`: experiment records and structured summaries.
   - `logs/`: placeholder only; real logs are ignored by Git.
   - `scripts/prefetch_datasets.py`: lightweight dataset prefetch/check utility.
+  - `scripts/analyze_hardware.py`: server resource probe and OPSD config recommender.
 - Agent harness:
   - `AGENTS.md`, `docs/agent-harness/`, `agents/skills/`, `evals/`, `tests/`.
 
@@ -48,5 +49,6 @@ Evaluation:
 ## Agent Notes
 
 - If dataset IDs or expected fields change, update both `reproduction/dataset_download.md` and `scripts/prefetch_datasets.py`.
+- If hardware-driven defaults change, update `reproduction/hardware_analysis.md`, `reproduction/opsd_runbook.md`, and any affected shell scripts.
 - If training flags change, update `reproduction/opsd_runbook.md`.
 - If survey scope changes, update `papers/manifest.md`, `notes/source_ledger.md`, and `slides/survey_outline.md`.

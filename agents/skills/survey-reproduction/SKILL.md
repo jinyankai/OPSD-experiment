@@ -26,6 +26,7 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
 5. Update docs when workflows change:
    - paper/source changes: `papers/manifest.md`, `notes/source_ledger.md`;
    - data changes: `reproduction/dataset_download.md`, `scripts/prefetch_datasets.py`;
+   - hardware changes: `reproduction/hardware_analysis.md`, `scripts/analyze_hardware.py`;
    - run changes: `reproduction/opsd_runbook.md`;
    - experiment facts: `experiments/`.
 
@@ -43,16 +44,18 @@ description: "Project-local workflow for the OPSD self-distillation/on-policy di
    `git -c safe.directory=E:/AlphaLab/OPSD-experiment status --short --branch`
 2. Verify dataset availability:
    `python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets`
-3. Verify imports/environment before training.
-4. Start with smoke tests before full training or evaluation.
-5. Record every run using `experiments/experiment_log_template.md`.
+3. On a new server, analyze hardware:
+   `python scripts/analyze_hardware.py --output-dir reproduction/hardware_reports`
+4. Verify imports/environment before training.
+5. Start with smoke tests before full training or evaluation.
+6. Record every run using `experiments/experiment_log_template.md`.
 
 ## Fast Checks
 
 ```powershell
 python evals/smoke_eval.py
 python -m unittest discover -s tests -p "test_*.py"
-python -m py_compile scripts/prefetch_datasets.py
+python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py
 ```
 
 For training/eval code changes:

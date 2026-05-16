@@ -5,6 +5,8 @@ __pycache__/
 # Training and evaluation artifacts
 logs/*
 !logs/.gitkeep
+reproduction/hardware_reports/*
+!reproduction/hardware_reports/.gitkeep
 wandb/
 runs/
 outputs/

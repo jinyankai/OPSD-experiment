@@ -19,14 +19,14 @@ This fork is a research workspace for a self-distillation / on-policy distillati
 
 - Upstream OPSD code: `opsd_train.py`, `opsd_trainer.py`, `data_collator.py`, `sft_train.py`, `grpo_train.py`, `eval/`.
 - Research layer: `papers/`, `notes/`, `slides/`.
-- Reproduction layer: `reproduction/`, `experiments/`, `logs/`, `scripts/prefetch_datasets.py`.
+- Reproduction layer: `reproduction/`, `experiments/`, `logs/`, `scripts/prefetch_datasets.py`, `scripts/analyze_hardware.py`.
 - Agent harness: `docs/agent-harness/`, `agents/skills/`, `evals/`, `tests/`.
 
 ## Canonical Checks
 
 - Harness sanity: `python evals/smoke_eval.py`.
 - Baseline tests: `python -m unittest discover -s tests -p "test_*.py"`.
-- Script syntax: `python -m py_compile scripts/prefetch_datasets.py`.
+- Script syntax: `python -m py_compile scripts/prefetch_datasets.py scripts/analyze_hardware.py`.
 - Heavy training/evaluation is not a default check; run it only when requested and record commands, hardware, logs, and outputs.
 
 ## Review Policy
