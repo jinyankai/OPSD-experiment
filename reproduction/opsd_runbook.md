@@ -70,6 +70,44 @@ Compatibility risks:
 - Qwen3 chat template and `enable_thinking` must match training/evaluation assumptions.
 - Long-context evaluation can require substantially more GPU memory than short training rollouts.
 
+## Dataset Preparation
+
+The official scripts use Hugging Face `datasets` and download lazily at first use. For reproducibility, prefetch them before training/evaluation and keep the cache path fixed.
+
+Primary training dataset:
+
+- `siyanzhao/Openthoughts_math_30k_opsd`, split `train`, loaded in `opsd_train.py`.
+
+Evaluation datasets:
+
+- `HuggingFaceH4/MATH-500`, split `test`.
+- `HuggingFaceH4/aime_2024`, split `train`.
+- `yentinglin/aime_2025`, split `train`, `trust_remote_code=True`.
+- `MathArena/hmmt_feb_2025`, split `train`, `trust_remote_code=True`.
+- `meituan-longcat/AMO-Bench`, split `test`.
+- `math-ai/minervamath`, split `test`.
+- `math-ai/amc23`, split `test`.
+
+Recommended prefetch command:
+
+```bash
+python scripts/prefetch_datasets.py --cache-dir .cache/hf_datasets
+```
+
+Training-set-only smoke check:
+
+```bash
+python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets
+```
+
+Eval-set-only smoke check:
+
+```bash
+python scripts/prefetch_datasets.py --only eval --cache-dir .cache/hf_datasets
+```
+
+For full details, including Windows PowerShell environment variables, offline reuse, and expected columns, see `reproduction/dataset_download.md`.
+
 ## Minimal Reproduction
 
 Recommended first target: Qwen3-1.7B, LoRA, fixed teacher, 4 GPUs if available.
@@ -152,7 +190,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python evaluate_math.py \
 1. Verify environment import:
    `python -c "import torch, transformers, trl, vllm, math_verify; print(torch.__version__)"`
 2. Verify dataset access:
-   `python -c "from datasets import load_dataset; print(load_dataset('siyanzhao/Openthoughts_math_30k_opsd')['train'][0].keys())"`
+   `python scripts/prefetch_datasets.py --only train --cache-dir .cache/hf_datasets`
 3. Run base eval with `--num_samples 2 --val_n 1`.
 4. Run OPSD for a tiny debug run with `--max_steps 1`, smaller batch, and local `output_dir`.
 5. Only after smoke tests, run 25/50/75/100-step checkpoints.
